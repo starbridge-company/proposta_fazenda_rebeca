@@ -644,6 +644,70 @@
     }
     .warn-note strong { color: var(--text-dark); font-weight: 600; }
 
+    /* ─── ARQUITETURA DO SISTEMA ──────────────────────────── */
+    .arch { display: flex; align-items: stretch; }
+
+    .arch__col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .arch__card {
+      background: var(--bg-light);
+      border: 1px solid rgba(61,90,107,.08);
+      border-radius: var(--radius);
+      padding: 16px 16px 18px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--t), transform var(--t);
+    }
+    .arch__card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+    .arch__card-kicker {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 7px;
+    }
+    .arch__card-title {
+      font-family: var(--font-title);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      color: var(--text-dark);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .arch__card-desc {
+      font-size: 11.5px;
+      color: var(--text-mid);
+      line-height: 1.58;
+    }
+
+    .arch__card--db {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .arch__card--db .arch__card-title { color: var(--white); }
+    .arch__card--db .arch__card-desc  { color: rgba(255,255,255,.72); }
+
+    .arch__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      flex-shrink: 0;
+    }
+    .arch__arrow svg { width: 16px; height: 16px; color: var(--accent); opacity: .5; }
+
+    .arch + .aut__intro { margin-top: 24px; }
+    .impact-label { margin-top: 40px; }
+    .impact-label + .impact-grid { margin-top: 14px; }
+
     /* ══════════════════════════════════════════════════════
        CRONOGRAMA
     ══════════════════════════════════════════════════════ */
@@ -1155,8 +1219,8 @@
       .hero__wrap { flex-direction: column; align-items: flex-start; gap: 32px; }
       .hero__side { flex-direction: row; align-items: flex-start; gap: 40px; padding-bottom: 0; }
       .hero__stat { text-align: left; }
-      .flow { flex-direction: column; gap: 10px; }
-      .flow__arrow { width: 100%; height: 20px; transform: rotate(90deg); }
+      .flow, .arch { flex-direction: column; gap: 10px; }
+      .flow__arrow, .arch__arrow { width: 100%; height: 20px; transform: rotate(90deg); }
       .impact-grid, .next-grid { grid-template-columns: 1fr; }
       .fase { grid-template-columns: 1fr; gap: 12px; padding: 20px 22px; }
       .fase__dur { text-align: left; }
@@ -1375,60 +1439,62 @@
       <div class="aut__head r">
         <p class="aut__num" aria-hidden="true">02</p>
         <div class="aut__head-info">
-          <p class="section-eyebrow">Automação 02</p>
+          <p class="section-eyebrow">Sistema 02</p>
           <h2 class="title">Controle de Estoques (Almoxarifado)</h2>
         </div>
       </div>
 
-      <p class="flow__label r r1">Fluxo da Automação</p>
+      <p class="flow__label r r1">Arquitetura Geral do Sistema</p>
 
-      <div class="flow r r3">
-        <div class="flow__card">
-          <p class="flow__step">Passo 01</p>
-          <p class="flow__card-title">Catalogação dos Itens</p>
-          <p class="flow__card-desc">Cada item recebe um código único e é organizado por categoria, formando um catálogo de 500 a 1.000 itens (SKUs) — de insumos a peças avulsas de máquinas.</p>
+      <div class="arch r r3">
+        <div class="arch__col">
+          <div class="arch__card">
+            <p class="arch__card-kicker">Entrada</p>
+            <p class="arch__card-title">Catálogo de Itens</p>
+            <p class="arch__card-desc">Catálogo de 500 a 1.000 itens (SKUs), cada um com código único e organizado por categoria — de insumos a peças avulsas de máquinas.</p>
+          </div>
+          <div class="arch__card">
+            <p class="arch__card-kicker">Entrada</p>
+            <p class="arch__card-title">Registro de Entradas e Saídas</p>
+            <p class="arch__card-desc">Baixas e devoluções parciais registradas pela pessoa responsável diretamente no aplicativo, mantendo o saldo sempre atualizado.</p>
+          </div>
         </div>
-        <div class="flow__arrow" aria-hidden="true">
+
+        <div class="arch__arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </div>
-        <div class="flow__card">
-          <p class="flow__step">Passo 02</p>
-          <p class="flow__card-title">Registro de Entrada e Saída</p>
-          <p class="flow__card-desc">Baixa registrada por uma pessoa responsável, inclusive devoluções parciais. O formato — código de barras ou aplicativo — será definido em conjunto na fase de levantamento.</p>
+
+        <div class="arch__col arch__col--center">
+          <div class="arch__card arch__card--db">
+            <p class="arch__card-kicker">Núcleo</p>
+            <p class="arch__card-title">Banco de Dados do Estoque</p>
+            <p class="arch__card-desc">Base única e centralizada (PostgreSQL) que consolida o catálogo e todas as movimentações, servindo como fonte única do saldo em tempo real.</p>
+          </div>
         </div>
-        <div class="flow__arrow" aria-hidden="true">
+
+        <div class="arch__arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </div>
-        <div class="flow__card">
-          <p class="flow__step">Passo 03</p>
-          <p class="flow__card-title">Consulta em Tempo Real</p>
-          <p class="flow__card-desc">Antes de qualquer compra, é possível checar se o item já está no almoxarifado, evitando comprar o que já existe em estoque.</p>
-        </div>
-        <div class="flow__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </div>
-        <div class="flow__card">
-          <p class="flow__step">Passo 04</p>
-          <p class="flow__card-title">Integração com o Agente de Cotação</p>
-          <p class="flow__card-desc">O agente de cotação consulta o estoque disponível antes de disparar uma nova cotação, evitando comprar o que já está garantido.</p>
-        </div>
-        <div class="flow__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </div>
-        <div class="flow__card">
-          <p class="flow__step">Passo 05</p>
-          <p class="flow__card-title">Relatórios de Consumo</p>
-          <p class="flow__card-desc">Ao final do mês ou do ano, fica claro qual item mais sai, qual menos sai e o nível ideal de estoque para não faltar nem sobrar.</p>
+
+        <div class="arch__col">
+          <div class="arch__card">
+            <p class="arch__card-kicker">Saída</p>
+            <p class="arch__card-title">Painel Web de Consulta</p>
+            <p class="arch__card-desc">Consulta do saldo em tempo real antes de qualquer compra, evitando comprar o que já existe no almoxarifado.</p>
+          </div>
+          <div class="arch__card">
+            <p class="arch__card-kicker">Saída</p>
+            <p class="arch__card-title">Relatórios de Consumo</p>
+            <p class="arch__card-desc">Giro de cada item (o que mais e o que menos sai) e o nível ideal de estoque para não faltar nem sobrar.</p>
+          </div>
         </div>
       </div>
+
+      <p class="flow__label impact-label r r4">Benefícios para a operação</p>
 
       <div class="impact-grid r r4">
         <div class="impact-card">
@@ -1455,17 +1521,17 @@
               <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/>
             </svg>
           </div>
-          <p class="impact-title">Registro simples de entrada/saída</p>
-          <p class="impact-desc">Baixa por código de barras ou aplicativo, com uma pessoa responsável por manter o controle atualizado — inclusive devoluções parciais.</p>
+          <p class="impact-title">Registro simples de entrada e saída</p>
+          <p class="impact-desc">Uma pessoa responsável mantém o controle atualizado a cada movimentação — inclusive devoluções parciais — pelo método de baixa definido no início do projeto.</p>
         </div>
         <div class="impact-card">
           <div class="impact-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
             </svg>
           </div>
-          <p class="impact-title">Funciona mesmo com internet instável</p>
-          <p class="impact-desc">Aplicativo com modo offline e sincronização posterior, como já construído em outro projeto — reforçado pelas Starlinks fixas e móveis já disponíveis na fazenda.</p>
+          <p class="impact-title">Acessível de qualquer dispositivo</p>
+          <p class="impact-desc">Sistema Web hospedado na nuvem e acessado pelo navegador, sem instalação — do escritório ao campo, sempre com a mesma informação atualizada.</p>
         </div>
         <div class="impact-card">
           <div class="impact-icon">
@@ -1475,15 +1541,6 @@
           </div>
           <p class="impact-title">Relatórios de consumo</p>
           <p class="impact-desc">Identifica o que mais e o que menos sai do estoque, apontando o nível ideal de cada item para não faltar nem comprar além do necessário.</p>
-        </div>
-        <div class="impact-card">
-          <div class="impact-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-          </div>
-          <p class="impact-title">Conectado ao agente de cotação</p>
-          <p class="impact-desc">O estoque disponível é consultado antes de uma nova cotação, evitando comprar o que já está garantido no almoxarifado.</p>
         </div>
       </div>
 
@@ -1748,10 +1805,9 @@
             <p class="fase__title">Levantamento</p>
           </div>
           <ul class="fase__items">
-            <li>Definir se a baixa será por código de barras ou por aplicativo (com modo offline e sincronização)</li>
             <li>Estruturar o catálogo por categoria e código único (500 a 1.000 itens/SKUs, de insumos a peças de máquinas)</li>
+            <li>Cadastro dos itens do estoque atual para popular o catálogo inicial do sistema</li>
             <li>Definir a pessoa responsável pelas baixas e as regras de registro, inclusive devoluções parciais</li>
-            <li>Definir a integração com o agente de cotação (consulta de estoque antes da compra)</li>
           </ul>
           <div class="fase__dur">
             <p class="fase__dur-lbl">Estimativa</p>
@@ -1766,12 +1822,12 @@
           </div>
           <ul class="fase__items">
             <li>Construir o catálogo e o registro de entrada e saída</li>
-            <li>Implementar a consulta em tempo real e a integração com o agente de cotação</li>
+            <li>Implementar a consulta em tempo real do saldo do estoque</li>
             <li>Implementar os relatórios de consumo (item que mais e que menos sai e nível ideal de estoque)</li>
           </ul>
           <div class="fase__dur">
             <p class="fase__dur-lbl">Estimativa</p>
-            <p class="fase__dur-val">3 semanas</p>
+            <p class="fase__dur-val">4 semanas</p>
           </div>
         </div>
 
@@ -1955,7 +2011,7 @@
           </div>
           <div class="risco-card">
             <p class="risco-title">Formato de registro do estoque</p>
-            <p class="risco-desc">A definição entre código de barras e aplicativo impacta a complexidade e o prazo do módulo de estoque, e será fechada no levantamento; a efetividade depende do registro consistente das baixas pela pessoa responsável.</p>
+            <p class="risco-desc">A definição do método de baixa (código de barras, QR Code ou outro método definido pelo cliente) impacta a complexidade e o prazo do módulo de estoque, e deve ser fechada antes do início do projeto; a efetividade depende do registro consistente das baixas pela pessoa responsável.</p>
           </div>
         </div>
 
@@ -1967,7 +2023,8 @@
             <li>Exemplos de nota fiscal, ordens de carregamento e documentos de motorista disponibilizados para o projeto</li>
             <li>Exemplos dos relatórios financeiros utilizados hoje e indicação de onde essas informações aparecem no sistema</li>
             <li>Validação, junto ao Aegro, da disponibilidade de dados via API/exportação para o dashboard financeiro</li>
-            <li>Definição, no levantamento, do formato de registro do estoque (código de barras ou aplicativo) e da pessoa responsável pelas entradas e saídas</li>
+            <li>Definição, <strong>antes do início do projeto</strong>, do método de baixa do estoque — código de barras, QR Code ou outro método definido pelo cliente — e da pessoa responsável pelas entradas e saídas; o caminho escolhido pode alterar a duração do projeto</li>
+            <li>Cadastro dos itens do estoque atual, para popular o catálogo inicial do sistema</li>
             <li>Novos acessos solicitados devem ser fornecidos em até 3 dias úteis</li>
             <li>Reuniões solicitadas serão agendadas com no máximo 1 dia útil de antecedência</li>
           </ul>
@@ -2026,7 +2083,7 @@
           <div class="invest__ribbon">Recorrente</div>
           <p class="invest__card-title">Suporte Contínuo (mensal)</p>
           <p class="invest__price-lbl">Valor mensal</p>
-          <p class="invest__tbd-val">R$ 5.000</p>
+          <p class="invest__tbd-val">R$ 6.500</p>
           <p class="invest__price-note">Por módulo contratado · contratação mínima de 6 meses.</p>
           <div class="invest__includes">
             <div class="check-line">
