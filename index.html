@@ -76,6 +76,13 @@
 
     .nav__logo a { display: flex; align-items: center; }
     .nav__logo img { height: 24px; }
+    .nav__logo-fallback {
+      font-family: var(--font-title);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--primary);
+    }
 
     .nav__links {
       display: flex;
@@ -1108,6 +1115,14 @@
       filter: brightness(0) invert(1);
       opacity: .24;
     }
+    .contato__logo-fallback {
+      font-family: var(--font-title);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.24);
+    }
 
     /* ─── FOOTER ──────────────────────────────────────────── */
     .footer {
@@ -1183,7 +1198,7 @@
   <nav class="nav" id="nav">
     <div class="nav__logo">
       <a href="#inicio">
-        <img src="logo-starbridge.png" alt="Starbridge" />
+        <img src="logo-starbridge.png" alt="Starbridge" onerror="this.outerHTML='<span class=&quot;nav__logo-fallback&quot;>Starbridge</span>'" />
       </a>
     </div>
     <button class="nav__burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
@@ -1192,6 +1207,7 @@
     <ul class="nav__links" id="navLinks">
       <li><a href="#inicio" class="active">Início</a></li>
       <li><a href="#cotacao">Cotação</a></li>
+      <li><a href="#estoque">Estoque</a></li>
       <li><a href="#notafiscal">Nota Fiscal</a></li>
       <li><a href="#dashboards">Dashboards &amp; Agente</a></li>
       <li><a href="#cronograma">Cronograma</a></li>
@@ -1214,11 +1230,14 @@
         <p class="hero__client r r2">Vinícius Lima · Rebeca Figueredo</p>
         <div class="hero__rule r r2"></div>
         <p class="hero__desc r r3">
-          Automação da emissão de notas fiscais de colheita e dashboards financeiros complementares ao Aegro, com agente de consulta.
+          Automação da emissão de notas fiscais de colheita, controle de estoque do almoxarifado e dashboards financeiros complementares ao Aegro, com agente de consulta.
         </p>
         <div class="hero__tags r r4">
           <a href="#cotacao" class="hero__tag">
             Agente de Cotação
+          </a>
+          <a href="#estoque" class="hero__tag">
+            Controle de Estoque
           </a>
           <a href="#notafiscal" class="hero__tag">
             Emissão de Nota Fiscal
@@ -1362,15 +1381,139 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════
-       EMISSÃO DE NOTA FISCAL
+       CONTROLE DE ESTOQUE (ALMOXARIFADO)
   ══════════════════════════════════════════════════════ -->
-  <section id="notafiscal" class="aut-section">
+  <section id="estoque" class="aut-section">
     <div class="container">
 
       <div class="aut__head r">
         <p class="aut__num" aria-hidden="true">02</p>
         <div class="aut__head-info">
           <p class="section-eyebrow">Automação 02</p>
+          <h2 class="title">Controle de Estoque (Almoxarifado)</h2>
+        </div>
+      </div>
+
+      <p class="flow__label r r1">Fluxo da Automação</p>
+
+      <div class="flow r r3">
+        <div class="flow__card">
+          <p class="flow__step">Passo 01</p>
+          <p class="flow__card-title">Catalogação dos Itens</p>
+          <p class="flow__card-desc">Cada item recebe um código único (numeração ou código de barras) e é organizado por categoria, formando um catálogo de 500 a 1.000 itens.</p>
+        </div>
+        <div class="flow__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <div class="flow__card">
+          <p class="flow__step">Passo 02</p>
+          <p class="flow__card-title">Registro de Entrada e Saída</p>
+          <p class="flow__card-desc">Baixa registrada por uma pessoa responsável, inclusive devoluções parciais. O formato — código de barras ou aplicativo — será definido em conjunto na fase de levantamento.</p>
+        </div>
+        <div class="flow__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <div class="flow__card">
+          <p class="flow__step">Passo 03</p>
+          <p class="flow__card-title">Consulta em Tempo Real</p>
+          <p class="flow__card-desc">Antes de qualquer compra, é possível checar se o item já está disponível no almoxarifado, evitando gasto duplicado.</p>
+        </div>
+        <div class="flow__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <div class="flow__card">
+          <p class="flow__step">Passo 04</p>
+          <p class="flow__card-title">Integração com o Agente de Cotação</p>
+          <p class="flow__card-desc">O agente de cotação consulta o estoque disponível antes de disparar uma nova cotação, evitando comprar o que já está garantido.</p>
+        </div>
+        <div class="flow__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <div class="flow__card">
+          <p class="flow__step">Passo 05</p>
+          <p class="flow__card-title">Relatórios de Consumo</p>
+          <p class="flow__card-desc">Ao final do mês ou do ano, fica claro qual item mais sai, qual menos sai e qual o nível ideal de estoque para não faltar nem sobrar.</p>
+        </div>
+      </div>
+
+      <div class="impact-grid r r4">
+        <div class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </div>
+          <p class="impact-title">Fim das compras duplicadas</p>
+          <p class="impact-desc">Antes de comprar, dá para ver o que já está no almoxarifado, evitando empatar dinheiro em itens que já existem em estoque.</p>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/>
+            </svg>
+          </div>
+          <p class="impact-title">Catálogo por código único</p>
+          <p class="impact-desc">Cada item — de insumos a peças avulsas de máquinas — recebe um número ou código de barras, organizando um catálogo de 500 a 1.000 itens.</p>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <p class="impact-title">Registro simples de entrada/saída</p>
+          <p class="impact-desc">Baixa por código de barras ou aplicativo, com uma pessoa responsável por manter o controle atualizado — inclusive devoluções parciais.</p>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <p class="impact-title">Funciona sem depender da internet</p>
+          <p class="impact-desc">Aplicativo com modo offline e sincronização posterior, como já construído em outro projeto — reforçado pelas Starlinks fixas e móveis já disponíveis na fazenda.</p>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <p class="impact-title">Relatórios de consumo</p>
+          <p class="impact-desc">Identifica o que mais e o que menos sai do estoque, apontando o nível ideal de cada item para não faltar nem comprar além do necessário.</p>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <p class="impact-title">Conectado ao agente de cotação</p>
+          <p class="impact-desc">O estoque disponível é consultado antes de uma nova cotação, evitando comprar o que já está garantido no almoxarifado.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       EMISSÃO DE NOTA FISCAL
+  ══════════════════════════════════════════════════════ -->
+  <section id="notafiscal" class="aut-section">
+    <div class="container">
+
+      <div class="aut__head r">
+        <p class="aut__num" aria-hidden="true">03</p>
+        <div class="aut__head-info">
+          <p class="section-eyebrow">Automação 03</p>
           <h2 class="title">Emissão de Nota Fiscal (Colheita)</h2>
         </div>
       </div>
@@ -1455,9 +1598,9 @@
     <div class="container">
 
       <div class="aut__head r">
-        <p class="aut__num" aria-hidden="true">03</p>
+        <p class="aut__num" aria-hidden="true">04</p>
         <div class="aut__head-info">
-          <p class="section-eyebrow">Automação 03</p>
+          <p class="section-eyebrow">Automação 04</p>
           <h2 class="title">Dashboards Financeiros &amp; Agente de Consulta</h2>
         </div>
       </div>
@@ -1476,480 +1619,4 @@
           </svg>
         </div>
         <div class="flow__card">
-          <p class="flow__step">Passo 02</p>
-          <p class="flow__card-title">Camada Própria</p>
-          <p class="flow__card-desc">Estruturação em banco próprio, corrigindo a somatória de valores em atraso e permitindo corte por safra (1/7 a 30/6).</p>
-        </div>
-        <div class="flow__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </div>
-        <div class="flow__card">
-          <p class="flow__step">Passo 03</p>
-          <p class="flow__card-title">Dashboard Financeiro</p>
-          <p class="flow__card-desc">Construção de um dashboard com contas a pagar e a receber lado a lado e visão consolidada do fluxo de caixa.</p>
-        </div>
-        <div class="flow__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </div>
-        <div class="flow__card">
-          <p class="flow__step">Passo 04</p>
-          <p class="flow__card-title">Agente de WhatsApp</p>
-          <p class="flow__card-desc">Agente de WhatsApp que responde a perguntas como “qual foi o custo da safra X?” direto pelo celular.</p>
-        </div>
-      </div>
-
-      <div class="impact-grid r r4">
-        <div class="impact-card">
-          <div class="impact-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <p class="impact-title">Relatórios confiáveis para banco</p>
-          <p class="impact-desc">Garante que os valores em atraso entrem corretamente na somatória, produzindo relatórios financeiros consistentes para apresentar a instituições financeiras.</p>
-        </div>
-        <div class="impact-card">
-          <div class="impact-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-          </div>
-          <p class="impact-title">Visão por safra</p>
-          <p class="impact-desc">Apura custos, despesas e lucro no recorte real da safra (1/7 a 30/6), permitindo avaliar a rentabilidade de cada ciclo produtivo com precisão — inclusive em operações que atravessam duas safras.</p>
-        </div>
-        <div class="impact-card">
-          <div class="impact-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-            </svg>
-          </div>
-          <p class="impact-title">Conciliação financeira</p>
-          <p class="impact-desc">Contas a pagar e a receber em uma visão única e conciliada, facilitando o acompanhamento do fluxo de caixa e a tomada de decisão.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════
-       CRONOGRAMA
-  ══════════════════════════════════════════════════════ -->
-  <section id="cronograma">
-    <div class="container">
-
-      <p class="label r">Cronograma</p>
-      <h2 class="title r r1">Cronograma de Implantação</h2>
-
-      <!-- ── MÓDULO 1 · AGENTE DE COTAÇÃO ── -->
-      <div class="module-header r r2">
-        <span class="module-header__flag module-header__flag--secondary">Módulo</span>
-        <span class="module-header__name">Agente de Cotação</span>
-      </div>
-
-      <div class="crono__grid">
-
-        <div class="fase r r1">
-          <div>
-            <p class="fase__num">Fase 01</p>
-            <p class="fase__title">Levantamento</p>
-          </div>
-          <ul class="fase__items">
-            <li>Integração com Whatsapp via Evolution API</li>
-            <li>Definir os campos do painel de solicitação e os critérios de ranqueamento das propostas</li>
-            <li>Definir as regras de disparo (raio máximo em km e nº máximo de fornecedores) e o tom da negociação conduzida pelo agente</li>
-          </ul>
-          <div class="fase__dur">
-            <p class="fase__dur-lbl">Estimativa</p>
-            <p class="fase__dur-val">4 semanas</p>
-          </div>
-        </div>
-
-        <div class="fase r r2">
-          <div>
-            <p class="fase__num">Fase 02</p>
-            <p class="fase__title">Implementação</p>
-          </div>
-          <div>
-            <ul class="fase__items">
-              <li>Modelar o banco (fornecedores com localização, cotações, respostas, histórico) e o cadastro de fornecedores</li>
-              <li>Construir o painel de solicitação e o disparo automático via WhatsApp, com seleção por raio e limite de fornecedores</li>
-              <li>Implementar a coleta/parsing das respostas e a negociação assistida por IA, com opção de assumir por humano</li>
-              <li>Consolidar as propostas na tabela comparativa do painel e no histórico</li>
-            </ul>
-          </div>
-          <div class="fase__dur">
-            <p class="fase__dur-lbl">Estimativa</p>
-            <p class="fase__dur-val">4 semanas</p>
-          </div>
-        </div>
-
-        <div class="fase r r3">
-          <div>
-            <p class="fase__num">Fase 03</p>
-            <p class="fase__title">Acompanhamento</p>
-            <p class="fase__system">Contínuo</p>
-          </div>
-          <ul class="fase__items">
-            <li>Monitoramento e correção de falhas de disparo, parsing ou negociação</li>
-            <li>Ajuste de prompts do agente</li>
-          </ul>
-          <div class="fase__dur">
-            <p class="fase__dur-lbl">Duração</p>
-            <p class="fase__dur-val">Contínuo</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ── MÓDULO 2 · EMISSÃO DE NOTA FISCAL ── -->
-      <div class="module-header module-header--gap r">
-        <span class="module-header__flag module-header__flag--secondary">Módulo</span>
-        <span class="module-header__name">Emissão de Nota Fiscal</span>
-      </div>
-
-      <div class="crono__grid">
-
-        <div class="fase r r2">
-          <div>
-            <p class="fase__num">Fase 01</p>
-            <p class="fase__title">Levantamento</p>
-          </div>
-          <ul class="fase__items">
-            <li>Levantar modelos de nota fiscal exigidos por cada comprador (ADM, Bunge, etc.)</li>
-            <li>Levantar exemplos de ordens de carregamento e documentos de motorista (CNH)</li>
-            <li>Validar com a Aegro se existe API de emissão de nota fiscal, ou se será necessário automatizar via robô de interface</li>
-            <li>Validar acesso de teste ao Aegro (visualização)</li>
-          </ul>
-          <div class="fase__dur">
-            <p class="fase__dur-lbl">Estimativa</p>
-            <p class="fase__dur-val">2 semanas</p>
-          </div>
-        </div>
-
-        <div class="fase r r3">
-          <div>
-            <p class="fase__num">Fase 02</p>
-            <p class="fase__title">Implementação</p>
-          </div>
-          <div>
-            <ul class="fase__items">
-              <li>Construir extração e cruzamento dos dados de colheita já processados pelo Aegro</li>
-              <li>Implementar adaptação por formato de comprador</li>
-              <li>Implementar camada de revisão antes da emissão</li>
-            </ul>
-            <p class="fase__obs"><strong>Cenário A — 3 semanas:</strong> se o Aegro disponibilizar API de emissão de nota fiscal. <strong>Cenário B — 4 semanas:</strong> se for necessário construir o robô de interface. A definição depende do resultado do levantamento (Fase 01).</p>
-          </div>
-          <div class="fase__dur">
-            <p class="fase__dur-lbl">Estimativa</p>
-            <p class="fase__dur-val">3–4 semanas</p>
-          </div>
-        </div>
-
-        <div class="fase r r4">
-          <div>
-            <p class="fase__num">Fase 03</p>
-            <p class="fase__title">Acompanhamento</p>
-            <p class="fase__system">Contínuo</p>
-          </div>
-          <ul class="fase__items">
-            <li>Monitoramento e correção de bugs</li>
-            <li>Ajustes para novos formatos de comprador</li>
-          </ul>
-          <div class="fase__dur">
-            <p class="fase__dur-lbl">Duração</p>
-            <p class="fase__dur-val">Contínuo</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ── MÓDULO 3 · DASHBOARDS ── -->
-      <div class="module-header module-header--gap r">
-        <span class="module-header__flag module-header__flag--secondary">Módulo</span>
-        <span class="module-header__name">Dashboards &amp; Agente Financeiro</span>
-      </div>
-
-      <div class="crono__grid">
-
-        <div class="fase r r1">
-          <div>
-            <p class="fase__num">Fase 01</p>
-            <p class="fase__title">Levantamento</p>
-          </div>
-          <ul class="fase__items">
-            <li>Entender quais informações são passadas ao banco, como os relatórios financeiros são elaborados hoje e que tipo de informação o dashboard deve gerar</li>
-            <li>Validar quais dados estão disponíveis via API/exportação</li>
-            <li>Mapear a lógica de corte por safra (1/7 a 30/6) e tratamento de transações que atravessam safras</li>
-          </ul>
-          <div class="fase__dur">
-            <p class="fase__dur-lbl">Estimativa</p>
-            <p class="fase__dur-val">2 semanas</p>
-          </div>
-        </div>
-
-        <div class="fase r r2">
-          <div>
-            <p class="fase__num">Fase 02</p>
-            <p class="fase__title">Implementação</p>
-          </div>
-          <ul class="fase__items">
-            <li>Extrair e estruturar os dados numa camada própria</li>
-            <li>Construir dashboard com contas a pagar/receber lado a lado e corte por safra</li>
-            <li>Implementar agente de consulta via WhatsApp</li>
-          </ul>
-          <div class="fase__dur">
-            <p class="fase__dur-lbl">Estimativa</p>
-            <p class="fase__dur-val">2 semanas</p>
-          </div>
-        </div>
-
-        <div class="fase r r3">
-          <div>
-            <p class="fase__num">Fase 03</p>
-            <p class="fase__title">Acompanhamento</p>
-            <p class="fase__system">Contínuo</p>
-          </div>
-          <ul class="fase__items">
-            <li>Monitoramento e correção de bugs</li>
-            <li>Ajustes de indicadores e novos relatórios</li>
-          </ul>
-          <div class="fase__dur">
-            <p class="fase__dur-lbl">Duração</p>
-            <p class="fase__dur-val">Contínuo</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════
-       RISCOS & PREMISSAS
-  ══════════════════════════════════════════════════════ -->
-  <section id="riscos">
-    <div class="container">
-
-      <p class="label r">Riscos &amp; Premissas</p>
-      <h2 class="title r r1">Riscos &amp; Premissas</h2>
-
-      <div class="riscos__grid">
-
-        <div class="r r2">
-          <p class="riscos__col-label">Principais Riscos</p>
-          <div class="risco-card">
-            <p class="risco-title">Negociação por IA (Agente de Cotação)</p>
-            <p class="risco-desc">A negociação conduzida pelo agente pode ter de intervenção humana quando necessário</p>
-          </div>
-          <div class="risco-card">
-            <p class="risco-title">Conectividade e adoção</p>
-            <p class="risco-desc">Internet limitada na fazenda impacta o disparo e o recebimento em tempo real; e a efetividade depende do uso consistente do painel pela equipe.</p>
-          </div>
-          <div class="risco-card">
-            <p class="risco-title">Acurácia inicial da IA</p>
-            <p class="risco-desc">Nos primeiros ciclos, a revisão humana é necessária para cobertura total dos casos; a acurácia evolui à medida que o modelo é calibrado.</p>
-          </div>
-          <div class="risco-card">
-            <p class="risco-title">Diversidade de formato por comprador</p>
-            <p class="risco-desc">Cada comprador de grão (ADM, Bunge etc.) pode exigir campos e rodapés diferentes na nota fiscal, e os modelos podem mudar conforme os contratos — o que exige mapeamento e manutenção contínua.</p>
-          </div>
-          <div class="risco-card">
-            <p class="risco-title">Disponibilidade de API/dados no Aegro</p>
-            <p class="risco-desc">Ainda não confirmado se o Aegro oferece API para emissão de nota fiscal e para extração dos dados financeiros, ou se será necessário construir um robô de interface — impacta a complexidade e o prazo dos dois módulos.</p>
-          </div>
-          <div class="risco-card">
-            <p class="risco-title">Qualidade dos documentos de entrada</p>
-            <p class="risco-desc">Fotos de CNH ou ordens de carregamento com baixa legibilidade impactam a acurácia das extrações.</p>
-          </div>
-        </div>
-
-        <div class="r r3">
-          <p class="riscos__col-label">Premissas</p>
-          <ul class="premissa-list">
-            <li>A solicitação e o acompanhamento ocorrem pelo painel; a negociação conduzida pelo agente pressupõe supervisão humana, com opção de assumir o atendimento a qualquer momento</li>
-            <li>Acesso de visualização ao Aegro fornecido para testes, com apoio da gerente de conta</li>
-            <li>Exemplos de nota fiscal, ordens de carregamento e documentos de motorista disponibilizados para o projeto</li>
-            <li>Exemplos dos relatórios financeiros utilizados hoje e indicação de onde essas informações aparecem no sistema</li>
-            <li>Validação, junto ao Aegro, da disponibilidade de dados via API/exportação para o dashboard financeiro</li>
-            <li>Novos acessos solicitados devem ser fornecidos em até 3 dias úteis</li>
-            <li>Reuniões solicitadas serão agendadas com no máximo 1 dia útil de antecedência</li>
-          </ul>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════
-       INVESTIMENTO
-  ══════════════════════════════════════════════════════ -->
-  <section id="investimento">
-    <div class="container">
-
-      <p class="label r">Investimento</p>
-      <h2 class="title r r1">Condições Comerciais</h2>
-      <p class="subtitle r r1">Custo de ferramentas e plataformas não incluso</p>
-
-      <!-- ── IMPLEMENTAÇÃO ── -->
-      <p class="invest__section-label r r2">Implementação</p>
-      <div class="invest__grid">
-
-        <div class="invest__card is-tbd r r2">
-          <p class="invest__card-title">Agente de Cotação</p>
-          <p class="invest__card-sub">Valor de implementação</p>
-          <p class="invest__tbd-val">R$ 20.000</p>
-        </div>
-
-        <div class="invest__card r r2">
-          <p class="invest__card-title">Emissão de Nota Fiscal</p>
-          <p class="invest__card-sub">Valor de implementação</p>
-          <p class="invest__tbd-val">R$ 14.000</p>
-        </div>
-
-        <div class="invest__card r r3">
-          <p class="invest__card-title">Dashboards &amp; Agente Financeiro</p>
-          <p class="invest__card-sub">Valor de implementação</p>
-          <p class="invest__tbd-val">R$ 8.000</p>
-        </div>
-
-      </div>
-
-      <!-- ── RECORRENTE ── -->
-      <p class="invest__section-label r r3">Recorrente</p>
-      <div class="invest__grid invest__grid--single">
-
-        <div class="invest__card featured r r3">
-          <div class="invest__ribbon">Recorrente</div>
-          <p class="invest__card-title">Suporte Contínuo (mensal)</p>
-          <p class="invest__price-lbl">Valor mensal</p>
-          <p class="invest__tbd-val">R$ 5.000</p>
-          <p class="invest__price-note">Por módulo contratado · contratação mínima de 6 meses.</p>
-          <div class="invest__includes">
-            <div class="check-line">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              Monitoramento
-            </div>
-            <div class="check-line">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              Correção de bugs
-            </div>
-            <div class="check-line">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              Ajustes de regras/prompt
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="invest__team r r4">
-        <strong>Equipe Starbridge:</strong> Engenheiro de automações (desenvolvimento) + Consultor (coordenação e ponto de contato direto)
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════
-       CONTATO
-  ══════════════════════════════════════════════════════ -->
-  <section id="contato">
-    <div class="container">
-
-      <p class="label r">Contato</p>
-      <h2 class="title r r1">Obrigado.</h2>
-      <p class="contato__desc r r2">Estamos prontos para começar. Qualquer dúvida, entre em contato.</p>
-
-      <p class="contato__name r r3">Pedro Zawislak</p>
-
-      <div class="contato__links r r4">
-        <a href="mailto:pedro@starbridge.com.br" class="contato__link">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-          </svg>
-          pedro@starbridge.com.br
-        </a>
-        <a href="tel:+5511994587857" class="contato__link">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 5.55 5.55l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-          +55 (11) 99458-7857
-        </a>
-        <a href="https://starbridge.com.br" target="_blank" rel="noopener" class="contato__link">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          </svg>
-          starbridge.com.br
-        </a>
-      </div>
-
-      <div class="contato__logo r r5">
-        <img src="logo-starbridge.png" alt="Starbridge" />
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    Starbridge · pedro@starbridge.com.br · +55 (11) 99458-7857
-  </footer>
-
-  <script>
-    // ─── NAV SCROLL ─────────────────────────────────────
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 10);
-    }, { passive: true });
-
-    // ─── MENU MOBILE ────────────────────────────────────
-    const burger = document.getElementById('burger');
-    burger.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      burger.setAttribute('aria-expanded', String(open));
-    });
-    document.querySelectorAll('#navLinks a').forEach(a => {
-      a.addEventListener('click', () => {
-        nav.classList.remove('open');
-        burger.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // ─── ACTIVE NAV LINK ─────────────────────────────────
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks  = document.querySelectorAll('.nav__links a');
-    const observer  = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(a => a.classList.remove('active'));
-          const active = document.querySelector(`.nav__links a[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    sections.forEach(s => observer.observe(s));
-
-    // ─── REVEAL ON SCROLL ─────────────────────────────────
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('on');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.r').forEach(el => revealObserver.observe(el));
-  </script>
-
-</body>
-</html>
+          <p
